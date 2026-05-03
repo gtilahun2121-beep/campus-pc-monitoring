@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus PC Monitoring System</title>
+    <link rel="stylesheet" href="styles.css?v=8">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <img src="photo_2026-03-10_21-43-47.jpg" alt="BDU Logo" class="logo">
+                <h1>Campus PC Entry & Exit System</h1>
+            </div>
+            <div id="userInfo" class="hidden">
+                <span id="loggedUser"></span>
+                <button onclick="logout()">Logout</button>
+            </div>
+            <div id="homeNav" class="home-nav">
+                <button onclick="showPage('loginPage')">Login</button>
+                <button onclick="showPage('registerPage')">Register</button>
+            </div>
+        </header>
+
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <div class="hero-section-large">
+                <div class="hero-image-large"></div>
+                <div class="hero-text-large">
+                    <h1>Welcome to Bahir Dar University</h1>
+                    <h2>Campus PC Entry & Exit Monitoring System</h2>
+                    <p>Secure and Efficient PC Management for Campus Safety</p>
+                    <div class="hero-buttons">
+                        <button onclick="showPage('loginPage')" class="hero-btn">Administrator Login</button>
+                        <button onclick="showPage('registerPage')" class="hero-btn secondary">Register Your PC</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="loginPage" class="page">
+            <div class="page-hero-wrap">
+                <div class="hero-section">
+                    <div class="hero-image"></div>
+                    <div class="hero-text">
+                        <h1>Welcome to Campus PC Monitoring</h1>
+                        <p>Secure and Efficient PC Entry & Exit Management System</p>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <h2>Administrator Login</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label>Username (letters only)</label>
+                            <input type="text" id="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password (min 8 characters)</label>
+                            <div style="position: relative;">
+                                <input type="password" id="password" required>
+                                <span onclick="togglePassword('password')" style="position: absolute; right: 10px; top: 12px; cursor: pointer; font-size: 18px;">👁️</span>
+                            </div>
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                    <p class="link" onclick="showPage('registerPage')">Register New PC →</p>
+                    <p class="link" onclick="showPage('homePage')">← Back to Home</p>
+                    <p class="link" onclick="showPage('resetPasswordPage')" style="color: #ffcccc;">Forgot Password? Reset Credentials</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Password Page -->
+        <div id="resetPasswordPage" class="page">
+            <div class="page-hero-wrap">
+                <div class="hero-section">
+                    <div class="hero-image"></div>
+                    <div class="hero-text">
+                        <h1>Reset Admin Credentials</h1>
+                        <p>Create New Administrator Account</p>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <h2>Reset Administrator Credentials</h2>
+                    <p style="text-align: center; color: #ffcccc; margin-bottom: 20px;">
+                        ⚠️ Warning: This will delete your current admin account and create a new one.
+                    </p>
+                    <form id="resetPasswordForm">
+                        <div class="form-group">
+                            <label>New Username</label>
+                            <input type="text" id="resetUsername" required>
+                        </div>
+                        <div class="form-group">
+                            <label>New Password (min 8 characters)</label>
+                            <div style="position: relative;">
+                                <input type="password" id="resetPassword" required>
+                                <span onclick="togglePassword('resetPassword')" style="position: absolute; right: 10px; top: 12px; cursor: pointer; font-size: 18px;">👁️</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm New Password</label>
+                            <div style="position: relative;">
+                                <input type="password" id="resetConfirmPassword" required>
+                                <span onclick="togglePassword('resetConfirmPassword')" style="position: absolute; right: 10px; top: 12px; cursor: pointer; font-size: 18px;">👁️</span>
+                            </div>
+                        </div>
+                        <button type="submit">Reset & Create New Account</button>
+                    </form>
+                    <p class="link" onclick="showPage('loginPage')">← Back to Login</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PC Registration Page -->
+        <div id="registerPage" class="page">
+            <div class="page-hero-wrap">
+                <div class="hero-section">
+                    <div class="hero-image"></div>
+                    <div class="hero-text">
+                        <h1>PC Registration Portal</h1>
+                        <p>Register Your Personal Computer for Campus Access</p>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <h2>PC Registration</h2>
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label>Student ID (numbers only)</label>
+                            <input type="text" id="regStudentId" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Student Name (letters only)</label>
+                            <input type="text" id="regStudentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Department (letters only)</label>
+                            <input type="text" id="regDepartment" required>
+                        </div>
+                        <div class="form-group">
+                            <label>PC Brand (letters only)</label>
+                            <input type="text" id="regPcBrand" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Serial Number (letters and numbers)</label>
+                            <input type="text" id="regSerialNumber" required>
+                        </div>
+                        <button type="submit">Register PC</button>
+                    </form>
+                    <p class="link" onclick="showPage('loginPage')">← Back to Login</p>
+                    <p class="link" onclick="showPage('homePage')">← Back to Home</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Dashboard -->
+        <div id="dashboardPage" class="page">
+            <div class="dashboard">
+                <h2>Security Dashboard</h2>
+                <div class="search-section">
+                    <input type="text" id="searchStudentId" placeholder="Enter Student ID or Name">
+                    <button onclick="searchStudent()">Search</button>
+                </div>
+                
+                <div id="studentInfo" class="hidden">
+                    <div class="info-card">
+                        <h3>Student Information</h3>
+                        <p><strong>ID:</strong> <span id="displayStudentId"></span></p>
+                        <p><strong>Name:</strong> <span id="displayStudentName"></span></p>
+                        <p><strong>Department:</strong> <span id="displayDepartment"></span></p>
+                        <p><strong>PC Brand:</strong> <span id="displayPcBrand"></span></p>
+                        <p><strong>Serial:</strong> <span id="displaySerial"></span></p>
+                        <p><strong>Status:</strong> <span id="displayStatus"></span></p>
+                        
+                        <div class="action-buttons">
+                            <button id="entryBtn" onclick="recordEntry()">Record Entry</button>
+                            <button id="exitBtn" onclick="recordExit()">Record Exit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button onclick="showPage('historyPage')">View History</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity History Page -->
+        <div id="historyPage" class="page">
+            <div class="history">
+                <h2>Activity History</h2>
+                <div class="table-container">
+                    <table id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>PC Serial</th>
+                                <th>Entry Time</th>
+                                <th>Exit Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody"></tbody>
+                    </table>
+                </div>
+                <button onclick="showPage('dashboardPage')">← Back to Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
